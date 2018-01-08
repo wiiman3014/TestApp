@@ -5,21 +5,84 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid RenderTransformOrigin="0.499,0.496" VerticalAlignment="Bottom" Height="319">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="6*"/>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="491*"/>
-        </Grid.ColumnDefinitions>
+        Title="MainWindow" Height="382.716" Width="594.136">
+    <Window.CommandBindings>
+        <CommandBinding x:Name="cmdSaveAs" Command="ApplicationCommands.SaveAs" CanExecute="CmdSaveAs_CanExecute" Executed="CmdSaveAs_Executed"/>
+        <CommandBinding x:Name="cmdHelp" Command="ApplicationCommands.Help" CanExecute="CmdHelp_CanExecute" Executed="CmdHelp_Executed"/>
+        <CommandBinding x:Name="cmdOpen" Command="ApplicationCommands.Open" CanExecute="CmdOpen_CanExecute" Executed="CmdOpen_Executed" />
+        <CommandBinding x:Name="cmdSave" Command="ApplicationCommands.Save" CanExecute="CmdSave_CanExecute" Executed="CmdSave_Executed"/>
+    </Window.CommandBindings>
+
+
+    <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="0*"/>
-            <RowDefinition Height="0*"/>
+            <RowDefinition Height="29"/>
+            <RowDefinition Height="27"/>
             <RowDefinition/>
+            <RowDefinition Height="34"/>
         </Grid.RowDefinitions>
-        <Button Content="ok" Margin="200,248,155,52" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" Height="19" Click="Button_Click"/>
-        <Label x:Name="myLbl" Content="label" HorizontalAlignment="Left" Margin="142,139,0,0" VerticalAlignment="Top" Width="178" Grid.Row="2" Grid.Column="2" Height="26"/>
-        <TextBox x:Name="box" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="200,19,0,0" Grid.RowSpan="3" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Menu x:Name="Menu" Margin="0,11,0,0" MaxHeight="20">
+            <MenuItem x:Name="fichier" Header="fichier" >
+                <MenuItem Header="Ouvrir"  Command="ApplicationCommands.Open" />
+                <MenuItem Header="Enregistrer" Command="ApplicationCommands.Save"/>
+                <MenuItem Header="Enregistrer sous" Command="ApplicationCommands.SaveAs" />
+                <MenuItem Header="Aide" Command="ApplicationCommands.Help" />
+            </MenuItem>
+            <MenuItem x:Name="Edition" Header="Edition">
+                <MenuItem Header="Nouvelle entrer" HorizontalAlignment="Left" Height="22" Width="175" Click="MenuItem_Click" Margin="0,0,-35,0"/>
+            </MenuItem>
+            <MenuItem x:Name="aide" Header="Aide"/>
+        </Menu>
+
+        <ToolBar Height="28" VerticalAlignment="Top" Grid.Row="1" >
+
+            <Button x:Name="openFile" Content="" Height="25" VerticalAlignment="Top" Width="26" Margin="0,0,0,-2" Command="ApplicationCommands.Open" >
+                <Button.Background>
+                    <ImageBrush ImageSource="R:\3eme\pratique\C#\Images\fileopen.ico"/>
+                </Button.Background>
+            </Button>
+
+            <Button x:Name="Save" Content="" Height="24" VerticalAlignment="Top" Width="24" Margin="0,0,0,-1" Command="ApplicationCommands.Save" >
+                <Button.Background>
+                    <ImageBrush ImageSource="R:\3eme\pratique\C#\Images\filesave.ico" />
+                </Button.Background>
+            </Button>
+
+            <Button x:Name="fileclose" Content="" Height="24" VerticalAlignment="Top" Width="25" Margin="0,0,0,-1">
+                <Button.Background>
+                    <ImageBrush ImageSource="R:\3eme\pratique\C#\Images\fileclose.ico"/>
+                </Button.Background>
+            </Button>
+
+            <Button x:Name="fileimport" Content="" Height="24" VerticalAlignment="Top" Width="24">
+                <Button.Background>
+                    <ImageBrush ImageSource="R:\3eme\pratique\C#\Images\fileimport.ico"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="filenew" Content="" Height="24" VerticalAlignment="Top" Width="24" Click="filenew_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="file:///R:/3eme/pratique/C%23/Images/filenew.ico"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="fileprint" Content="" Height="24" VerticalAlignment="Top" Width="24" Click="fileprint_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="R:\3eme\pratique\C#\Images\fileprint.ico"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="filesavAs" Content="" VerticalAlignment="Stretch" Width="24" Margin="0,0,0,-1" Command="ApplicationCommands.SaveAs">
+                <Button.Background>
+                    <ImageBrush ImageSource="R:\3eme\pratique\C#\Images\filesaveas.ico"/>
+                </Button.Background>
+            </Button>
+
+        </ToolBar>
+
+        <TabControl x:Name="tableau"   Grid.Row="2" />
+        <Label x:Name="StatusBar" Content="label" Margin="10,0,416,2" Grid.Row="3">
+            <Label.ContextMenu>
+                <ContextMenu/>
+            </Label.ContextMenu>
+        </Label>
 
     </Grid>
 </Window>
